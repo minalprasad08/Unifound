@@ -1,0 +1,7 @@
+{
+  "name": "unifound-app",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix frontend install && npm --prefix frontend run build"
+  }
+}

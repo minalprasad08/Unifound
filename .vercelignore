@@ -1,0 +1,11 @@
+main.py
+Procfile
+render.yaml
+backend/
+ai/
+mcp_server/
+tests/
+docs/
+*.py
+*.db
+*.sqlite3
