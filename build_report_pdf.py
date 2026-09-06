@@ -1,8 +1,15 @@
 import os
 import subprocess
 from pathlib import Path
+import base64
 
 def generate_html_report() -> str:
+    assets_dir = Path(__file__).parent / "extracted_assets"
+    with open(assets_dir / "page_1_X4.png", "rb") as f:
+        banner_b64 = base64.b64encode(f.read()).decode("utf-8")
+    with open(assets_dir / "page_1_X15.png", "rb") as f:
+        crest_b64 = base64.b64encode(f.read()).decode("utf-8")
+
     html = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,38 +202,25 @@ def generate_html_report() -> str:
 """
 
     # ---------------- PAGE 1: COVER ----------------
-    html += """
+    html += f"""
 <!-- PAGE 1: COVER -->
 <div class="page">
   <div class="border-box" style="align-items: center; justify-content: space-between; text-align: center;">
-    <div style="width: 100%; text-align: left;">
-      <div class="parul-badge">
-        <span class="parul-red">Parul<sup>&reg;</sup><br><small style="font-size: 8pt;">University</small></span>
-        <span class="naac-yellow">NAAC A++<br><small style="font-size: 6.5pt;">ACCREDITED UNIVERSITY</small></span>
-      </div>
+    <div style="width: 100%; text-align: left; margin-bottom: 5px;">
+      <img src="data:image/png;base64,{banner_b64}" style="height: 48px; width: auto; object-fit: contain;" alt="Parul University NAAC A++">
     </div>
 
     <h1 class="doc-title" style="margin-top: 0;">UNIFOUND &ndash; LOST AND FOUND MANAGEMENT PORTAL</h1>
 
     <div>
-      <h2 class="report-type" style="margin-bottom: 8px;">MINOR PROJECT REPORT</h2>
+      <h2 class="report-type" style="margin-bottom: 8px;">MAJOR PROJECT REPORT</h2>
       <h3 class="degree-title">Degree of Bachelor of Technology in Computer Science &amp; Engineering</h3>
       <div class="uni-title">PARUL UNIVERSITY, VADODARA, GUJARAT</div>
     </div>
 
-    <!-- University Crest SVG -->
-    <div style="margin: 15px 0;">
-      <svg width="150" height="150" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="90" fill="none" stroke="#b91c1c" stroke-width="4"/>
-        <circle cx="100" cy="100" r="82" fill="#fffdfa" stroke="#d97706" stroke-width="2"/>
-        <path d="M50,75 Q100,45 150,75 L150,135 Q100,165 50,135 Z" fill="#fff" stroke="#b91c1c" stroke-width="3"/>
-        <path d="M100,55 L100,150" stroke="#b91c1c" stroke-width="2"/>
-        <circle cx="100" cy="80" r="14" fill="#f59e0b"/>
-        <rect x="68" y="105" width="24" height="24" fill="#2563eb" rx="2"/>
-        <rect x="108" y="105" width="24" height="24" fill="#16a34a" rx="2"/>
-        <path d="M40,160 Q100,180 160,160 Q100,172 40,160" fill="#b91c1c"/>
-        <text x="100" y="168" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">PARUL UNIVERSITY</text>
-      </svg>
+    <!-- Official University Crest Logo -->
+    <div style="margin: 10px 0;">
+      <img src="data:image/png;base64,{crest_b64}" style="height: 145px; width: auto; object-fit: contain;" alt="Parul University Crest">
     </div>
 
     <div class="session-title">SESSION: 2025-2026</div>
@@ -325,7 +319,7 @@ def generate_html_report() -> str:
 <div class="page">
   <div class="border-box">
     <h1 class="chap-title center-text" style="margin-top: 15px; margin-bottom: 25px;">CERTIFICATE</h1>
-    <p>This is to certify that <strong>Sahil Khot, Shivani Choudhary, Minal Prasad, Shivang Bhadwal</strong> Students of <strong>CSE VI Semester</strong> of <strong>Parul Institute of Technology, Vadodara</strong> has completed their Minor Project titled <strong>UNIFOUND - Lost and Found Management Portal</strong>, as per the syllabus and has submitted a satisfactory report on this project as a partial fulfillment towards the award of degree of <strong>Bachelor of Technology in Computer Science and Engineering</strong> under <strong>Parul University, Vadodara, Gujarat (India)</strong>.</p>
+    <p>This is to certify that <strong>Sahil Khot, Shivani Choudhary, Minal Prasad, Shivang Bhadwal</strong> Students of <strong>CSE VI Semester</strong> of <strong>Parul Institute of Technology, Vadodara</strong> has completed their Major Project titled <strong>UNIFOUND - Lost and Found Management Portal</strong>, as per the syllabus and has submitted a satisfactory report on this project as a partial fulfillment towards the award of degree of <strong>Bachelor of Technology in Computer Science and Engineering</strong> under <strong>Parul University, Vadodara, Gujarat (India)</strong>.</p>
 
     <div style="margin: 25px 0 25px 20px; line-height: 1.9;">
       <strong>Sahil Khot [2303051240190]</strong><br>
