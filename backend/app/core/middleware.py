@@ -25,13 +25,13 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         # 4. Cross-site scripting filter
         response.headers["X-XSS-Protection"] = "1; mode=block"
 
-        # 5. Content Security Policy compatible with React Vite single page apps
+        # 5. Content Security Policy compatible with Swagger Docs & React Vite single page apps
         response.headers["Content-Security-Policy"] = (
-            "default-src 'self'; "
-            "img-src 'self' data: blob:; "
-            "script-src 'self' 'unsafe-inline'; "
-            "style-src 'self' 'unsafe-inline'; "
-            "font-src 'self' data:; "
+            "default-src 'self' https://cdn.jsdelivr.net https://fastapi.tiangolo.com; "
+            "img-src 'self' data: blob: https://fastapi.tiangolo.com https://cdn.jsdelivr.net; "
+            "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+            "font-src 'self' data: https://cdn.jsdelivr.net; "
             "connect-src 'self' http: https:;"
         )
 
