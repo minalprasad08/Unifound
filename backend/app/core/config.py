@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "UniFound – AI-Powered Lost & Found Management System"
+    PROJECT_NAME: str = "UniFound - AI-Powered Lost & Found Management System"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
     ENVIRONMENT: str = "development"
